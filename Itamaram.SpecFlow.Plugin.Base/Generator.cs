@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using Gherkin;
 using Gherkin.Ast;
 using TechTalk.SpecFlow.Configuration;
 using TechTalk.SpecFlow.Generator;
+using TechTalk.SpecFlow.Generator.CodeDom;
 using TechTalk.SpecFlow.Generator.Interfaces;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 using TechTalk.SpecFlow.Parser;
-using TechTalk.SpecFlow.Utils;
 
 namespace Itamaram.SpecFlow.Plugin.Base
 {
@@ -15,23 +18,37 @@ namespace Itamaram.SpecFlow.Plugin.Base
     {
         private readonly ExamplesGeneratorContainer container;
 
-        public Generator(SpecFlowConfiguration config, ProjectSettings settings, ITestHeaderWriter writer,
-            ITestUpToDateChecker checker, IFeatureGeneratorRegistry registry, CodeDomHelper dom,
-            ExamplesGeneratorContainer container)
-            : base(config, settings, writer, checker, registry, dom)
+        public Generator(
+            SpecFlowConfiguration specFlowConfiguration,
+            ProjectSettings projectSettings,
+            ITestHeaderWriter testHeaderWriter,
+            ITestUpToDateChecker testUpToDateChecker,
+            IFeatureGeneratorRegistry featureGeneratorRegistry,
+            CodeDomHelper codeDomHelper,
+            IGherkinParserFactory gherkinParserFactory,
+            ExamplesGeneratorContainer container
+            ) : base(
+                specFlowConfiguration,
+                projectSettings,
+                testHeaderWriter,
+                testUpToDateChecker,
+                featureGeneratorRegistry,
+                codeDomHelper,
+                gherkinParserFactory
+                )
         {
             this.container = container;
         }
 
-        protected override SpecFlowDocument ParseContent(SpecFlowGherkinParser parser, TextReader contentReader,
-            string sourceFilePath)
+        protected override SpecFlowDocument ParseContent(IGherkinParser parser, TextReader contentReader,
+            SpecFlowDocumentLocation documentLocation)
         {
-            var doc = base.ParseContent(parser, contentReader, sourceFilePath);
+            var doc = base.ParseContent(parser, contentReader, documentLocation);
             var children = doc.SpecFlowFeature.Children.Select(c => ProcessScenarioDefinition(c, doc));
             return doc.Clone(doc.SpecFlowFeature.Clone(children: children));
         }
 
-        private ScenarioDefinition ProcessScenarioDefinition(ScenarioDefinition definition, SpecFlowDocument doc)
+        private IHasLocation ProcessScenarioDefinition(IHasLocation definition, SpecFlowDocument doc)
         {
             if (definition is ScenarioOutline outline)
                 return outline.Clone(examples: outline.Examples.Select(e => HandleTags(e, doc)));
@@ -67,6 +84,42 @@ namespace Itamaram.SpecFlow.Plugin.Base
             return !rows.Any()
                 ? example
                 : example.Clone(tags: unhandled, body: example.TableBody.Concat(RowSorter.MaybeSortRows(example.TableHeader, rows)));
+        }
+    }
+
+    public class MissingExamplesParserFactory : IGherkinParserFactory
+    {
+        public IGherkinParser Create(IGherkinDialectProvider dialectProvider)
+            => new MissingExamplesAllowingParser(dialectProvider);
+
+        public IGherkinParser Create(CultureInfo cultureInfo)
+            => new MissingExamplesAllowingParser(cultureInfo);
+    }
+
+    public class MissingExamplesAllowingParser : SpecFlowGherkinParser
+    {
+        public MissingExamplesAllowingParser(IGherkinDialectProvider dialectProvider) : base(dialectProvider)
+        {
+        }
+
+        public MissingExamplesAllowingParser(CultureInfo defaultLanguage) : base(defaultLanguage)
+        {
+        }
+
+        protected override void CheckSemanticErrors(SpecFlowDocument specFlowDocument)
+        {
+            Debugger.Launch();
+            try
+            {
+                base.CheckSemanticErrors(specFlowDocument);
+            }
+            catch (SemanticParserException e)
+            {
+                if(Regex.IsMatch(e.Message, @"^\(\d+:\d+\): Scenario Outline '.*?' has no examples defined$"))
+                    return;
+
+                throw;
+            }
         }
     }
 }

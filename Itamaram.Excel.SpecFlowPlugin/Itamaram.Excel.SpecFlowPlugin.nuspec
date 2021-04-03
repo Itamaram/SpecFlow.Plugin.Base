@@ -8,11 +8,11 @@
     <projectUrl>https://github.com/Itamaram/SpecFlow.Plugin.Base</projectUrl>
     <tags>SpecFlow Gherkin Excel SpecFlowPlugin Plugin Generator Example Tests Testing</tags>
     <dependencies>
-      <dependency id="SpecFlow" version="2.2.0" />
+      <dependency id="SpecFlow" version="3.7.38" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\$configuration$\*.dll" target="tools" />
+    <file src="bin\$configuration$\$TargetFramework$\*.dll" target="tools" />
     <file src="App.config.transform" target="content" />
   </files>
 </package>

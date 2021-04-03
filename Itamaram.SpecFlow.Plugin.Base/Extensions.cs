@@ -31,7 +31,7 @@ namespace Itamaram.SpecFlow.Plugin.Base
             return new SpecFlowDocument(
                 feature ?? d.SpecFlowFeature,
                 (comments ?? d.Comments)?.ToArray(),
-                sourceFilePath ?? d.SourceFilePath
+                new SpecFlowDocumentLocation(sourceFilePath ?? d.SourceFilePath)
             );
         }
 
@@ -42,7 +42,7 @@ namespace Itamaram.SpecFlow.Plugin.Base
             string keyword = null,
             string name = null,
             string description = null,
-            IEnumerable<ScenarioDefinition> children = null
+            IEnumerable<IHasLocation> children = null
         )
         {
             return new SpecFlowFeature(

@@ -8,7 +8,7 @@
     <projectUrl>https://github.com/Itamaram/SpecFlow.Plugin.Base</projectUrl>
     <tags>SpecFlow Gherkin SpecFlowPlugin Plugin Generator Example Tests Testing</tags>
     <dependencies>
-      <dependency id="SpecFlow.CustomPlugin" version="2.2.0" />
+      <dependency id="SpecFlow.CustomPlugin" version="3.7.38" />
     </dependencies>
   </metadata>
 </package>
