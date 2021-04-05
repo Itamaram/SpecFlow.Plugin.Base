@@ -77,7 +77,14 @@ namespace Itamaram.SpecFlow.Plugin.Base
 
                     unhandled.Remove(tag);
 
-                    rows.AddRange(generator.GetRows(name, doc.SourceFilePath, header).Select(r => r.ToTableRow(doc)));
+                    var generated = generator.GetRows(name, doc.SourceFilePath, header)
+                        .Select(r => r.ToTableRow(doc))
+                        .ToList();
+
+                    if (!generated.Any())
+                        throw new SemanticParserException($"Generator '{name}' returned no examples", tag.Location);
+
+                    rows.AddRange(generated);
                 }
             }
 
