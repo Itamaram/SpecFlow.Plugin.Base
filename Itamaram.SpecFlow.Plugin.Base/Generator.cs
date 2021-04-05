@@ -115,7 +115,6 @@ namespace Itamaram.SpecFlow.Plugin.Base
 
         protected override void CheckSemanticErrors(SpecFlowDocument specFlowDocument)
         {
-            Debugger.Launch();
             try
             {
                 base.CheckSemanticErrors(specFlowDocument);
