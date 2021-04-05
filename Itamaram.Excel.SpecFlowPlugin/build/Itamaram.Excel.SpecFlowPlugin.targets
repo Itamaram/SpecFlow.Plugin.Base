@@ -1,0 +1,5 @@
+﻿<PropertyGroup>
+  <ItamaramExcelSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' == 'Core'">netecoreapp2.1</ItamaramExcelSpecFlowPluginFramework>
+  <ItamaramExcelSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' != 'Core'">net471</ItamaramExcelSpecFlowPluginFramework>
+  <ItamaramExcelSpecFlowPluginPath>$(MSBuildThisFileDirectory)\$(_SampleGeneratorPluginFramework)\Itamaram.Excel.SpecFlowPlugin.dll</ItamaramExcelSpecFlowPluginPath>
+</PropertyGroup>

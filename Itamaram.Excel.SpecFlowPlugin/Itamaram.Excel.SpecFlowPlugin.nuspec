@@ -12,7 +12,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\$configuration$\$TargetFramework$\*.dll" target="tools" />
-    <file src="App.config.transform" target="content" />
+    <file src="build\**\*" target="build"/>
+    <file src="bin\Release\net471\Itamaram.Excel.SpecFlowPlugin.*" target="build\net471"/>
+    <file src="bin\Release\netcoreapp2.1\Itamaram.Excel.SpecFlowPlugin.*" target="build\netcoreapp2.1"/>
   </files>
 </package>
