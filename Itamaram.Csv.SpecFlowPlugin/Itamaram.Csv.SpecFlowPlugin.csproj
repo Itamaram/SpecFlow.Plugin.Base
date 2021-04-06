@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Itamaram.SpecFlow.Plugin.Base\Itamaram.SpecFlow.Plugin.Base.csproj" />
+    <ProjectReference Include="..\Itamaram.SpecFlow.Plugin.Base\Itamaram.SpecFlow.Plugin.Base.csproj" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>
