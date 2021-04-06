@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-using Gherkin;
 using Gherkin.Ast;
 using TechTalk.SpecFlow.Configuration;
 using TechTalk.SpecFlow.Generator;
@@ -91,41 +88,6 @@ namespace Itamaram.SpecFlow.Plugin.Base
             return !rows.Any()
                 ? example
                 : example.Clone(tags: unhandled, body: example.TableBody.Concat(RowSorter.MaybeSortRows(example.TableHeader, rows)));
-        }
-    }
-
-    public class MissingExamplesParserFactory : IGherkinParserFactory
-    {
-        public IGherkinParser Create(IGherkinDialectProvider dialectProvider)
-            => new MissingExamplesAllowingParser(dialectProvider);
-
-        public IGherkinParser Create(CultureInfo cultureInfo)
-            => new MissingExamplesAllowingParser(cultureInfo);
-    }
-
-    public class MissingExamplesAllowingParser : SpecFlowGherkinParser
-    {
-        public MissingExamplesAllowingParser(IGherkinDialectProvider dialectProvider) : base(dialectProvider)
-        {
-        }
-
-        public MissingExamplesAllowingParser(CultureInfo defaultLanguage) : base(defaultLanguage)
-        {
-        }
-
-        protected override void CheckSemanticErrors(SpecFlowDocument specFlowDocument)
-        {
-            try
-            {
-                base.CheckSemanticErrors(specFlowDocument);
-            }
-            catch (SemanticParserException e)
-            {
-                if(Regex.IsMatch(e.Message, @"^\(\d+:\d+\): Scenario Outline '.*?' has no examples defined$"))
-                    return;
-
-                throw;
-            }
         }
     }
 }
