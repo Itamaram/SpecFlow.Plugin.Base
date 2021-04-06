@@ -1,3 +1,5 @@
-﻿<ItemGroup>
-  <SpecFlowGeneratorPlugins Include="$(ItamaramCsvSpecFlowPluginPath)" />
-</ItemGroup>
+﻿<Project>
+  <ItemGroup>
+    <SpecFlowGeneratorPlugins Include="$(ItamaramCsvSpecFlowPluginPath)" />
+  </ItemGroup>
+</Project>

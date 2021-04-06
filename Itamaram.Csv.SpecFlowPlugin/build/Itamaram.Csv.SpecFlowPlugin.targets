@@ -1,5 +1,7 @@
-﻿<PropertyGroup>
-  <ItamaramCsvSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' == 'Core'">netecoreapp2.1</ItamaramCsvSpecFlowPluginFramework>
-  <ItamaramCsvSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' != 'Core'">net471</ItamaramCsvSpecFlowPluginFramework>
-  <ItamaramCsvSpecFlowPluginPath>$(MSBuildThisFileDirectory)\$(_SampleGeneratorPluginFramework)\Itamaram.Csv.SpecFlowPlugin.dll</ItamaramCsvSpecFlowPluginPath>
-</PropertyGroup>
+﻿<Project>
+  <PropertyGroup>
+    <ItamaramCsvSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' == 'Core'">netecoreapp2.1</ItamaramCsvSpecFlowPluginFramework>
+    <ItamaramCsvSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' != 'Core'">net471</ItamaramCsvSpecFlowPluginFramework>
+    <ItamaramCsvSpecFlowPluginPath>$(MSBuildThisFileDirectory)\$(ItamaramCsvSpecFlowPluginFramework)\Itamaram.Csv.SpecFlowPlugin.dll</ItamaramCsvSpecFlowPluginPath>
+  </PropertyGroup>
+</Project>
