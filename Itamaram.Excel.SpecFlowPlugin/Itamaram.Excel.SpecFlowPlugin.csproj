@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
-    <PackageReference Include="Itamaram.SpecFlow.Plugin.Base" Version="2.1.13" />
+    <PackageReference Include="Itamaram.SpecFlow.Plugin.Base" Version="2.1.15" />
   </ItemGroup>
 
 </Project>
