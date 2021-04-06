@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>net471;netcoreapp2.1</TargetFrameworks>
+    <PackageId>Itamaram.SpecFlow.Plugin.Base</PackageId>
+    <Description>Base classes for creating SpecFlow plugins to generate examples based on tags</Description>
+    <Authors>Itamar Amith</Authors>
+    <PackageProjectUrl>https://github.com/Itamaram/SpecFlow.Plugin.Base</PackageProjectUrl>
+    <PackageTags>SpecFlow Gherkin SpecFlowPlugin Plugin Generator Example Tests Testing</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
