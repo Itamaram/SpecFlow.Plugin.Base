@@ -10,34 +10,9 @@
     <BuildOutputTargetFolder>build</BuildOutputTargetFolder>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificBuildOutput>
-  </PropertyGroup>
-
-  <Target Name="GetMyPackageFiles">
-    <ItemGroup>
-      <BuildOutputInPackage Include="$(OutputPath)\**\*.*"></BuildOutputInPackage>
-    </ItemGroup>
-  </Target>
-
-  <PropertyGroup>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);CustomContentTarget</TargetsForTfmSpecificContentInPackage>
-  </PropertyGroup>
-
-  <Target Name="CustomContentTarget">
-    <ItemGroup>
-      <TfmSpecificPackageFile Include="build/*.*">
-        <PackagePath>build</PackagePath>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
-  </Target>
-
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="2.16.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Itamaram.SpecFlow.Plugin.Base\Itamaram.SpecFlow.Plugin.Base.csproj" PrivateAssets="All"/>
+    <PackageReference Include="Itamaram.SpecFlow.Plugin.Base" Version="2.1.13" />
   </ItemGroup>
 
 </Project>

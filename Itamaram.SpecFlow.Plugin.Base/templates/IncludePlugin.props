@@ -1,9 +1,9 @@
-<Project>
+﻿<Project>
   <PropertyGroup>
     <SpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' == 'Core'">netecoreapp2.1</SpecFlowPluginFramework>
     <SpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' != 'Core'">net471</SpecFlowPluginFramework>
   </PropertyGroup>
   <ItemGroup>
-    <SpecFlowGeneratorPlugins Include="$(MSBuildThisFileDirectory)\$(SpecFlowPluginFramework)\Itamaram.Csv.SpecFlowPlugin.dll" />
+    <SpecFlowGeneratorPlugins Include="" />
   </ItemGroup>
 </Project>

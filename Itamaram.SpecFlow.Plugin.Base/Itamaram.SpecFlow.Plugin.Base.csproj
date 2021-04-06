@@ -7,11 +7,25 @@
     <Authors>Itamar Amith</Authors>
     <PackageProjectUrl>https://github.com/Itamaram/SpecFlow.Plugin.Base</PackageProjectUrl>
     <PackageTags>SpecFlow Gherkin SpecFlowPlugin Plugin Generator Example Tests Testing</PackageTags>
-    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SpecFlow.CustomPlugin" Version="3.7.38" />
   </ItemGroup>
+  
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);CopyTemplateToContent</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="CopyTemplateToContent">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="templates/*.*">
+        <PackagePath>content/templates</PackagePath>
+      </TfmSpecificPackageFile>
+      <TfmSpecificPackageFile Include="build/*.*">
+        <PackagePath>build</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
 
 </Project>

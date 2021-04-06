@@ -1,0 +1,6 @@
+﻿<Project>
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyOutputDirToBuildDir</TargetsForTfmSpecificBuildOutput>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);CopyBuildDirToBuildDir</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+</Project>

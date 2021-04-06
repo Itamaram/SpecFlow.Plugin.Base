@@ -1,0 +1,32 @@
+﻿<Project>
+  <Target Name="CopyOutputDirToBuildDir">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)\**\*.*"></BuildOutputInPackage>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CopyBuildDirToBuildDir">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="build/*.*">
+        <PackagePath>build</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CreatePluginIncludeProp" AfterTargets="Build">
+    <PropertyGroup>
+      <PropTemplateSource>$(MSBuildThisFileDirectory)\..\content\templates\IncludePlugin.props</PropTemplateSource>
+      <PropTemplateDestination>build\$(AssemblyName).props</PropTemplateDestination>
+    </PropertyGroup>
+
+    <Copy
+      SourceFiles="$(PropTemplateSource)"
+      DestinationFiles="$(PropTemplateDestination)"
+      />
+    <XmlPoke
+      XmlInputPath="$(PropTemplateDestination)"
+      Value="%24(MSBuildThisFileDirectory)\%24(SpecFlowPluginFramework)\$(AssemblyName).dll"
+      Query="//SpecFlowGeneratorPlugins/@Include"
+      />
+  </Target>
+</Project>
