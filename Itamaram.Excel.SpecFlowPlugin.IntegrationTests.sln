@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itamaram.Excel.SpecFlowPlugin.IntegrationTests", "Itamaram.Excel.SpecFlowPlugin.IntegrationTests\Itamaram.Excel.SpecFlowPlugin.IntegrationTests.csproj", "{F046F6B2-4D49-46A5-B02B-34E0935F5BF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itamaram.Excel.SpecFlowPlugin.DotNetCore.IntegrationTests", "Itamaram.Excel.SpecFlowPlugin.DotNetCore.IntegrationTests\Itamaram.Excel.SpecFlowPlugin.DotNetCore.IntegrationTests.csproj", "{DFE2C8D3-8C4D-48B7-B2FD-8B668AB35E82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F046F6B2-4D49-46A5-B02B-34E0935F5BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F046F6B2-4D49-46A5-B02B-34E0935F5BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F046F6B2-4D49-46A5-B02B-34E0935F5BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE2C8D3-8C4D-48B7-B2FD-8B668AB35E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE2C8D3-8C4D-48B7-B2FD-8B668AB35E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFE2C8D3-8C4D-48B7-B2FD-8B668AB35E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE2C8D3-8C4D-48B7-B2FD-8B668AB35E82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

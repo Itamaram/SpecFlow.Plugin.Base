@@ -24,6 +24,9 @@ namespace Itamaram.Excel.SpecFlowPlugin
                     ? excel.Workbook.Worksheets.First()
                     : excel.Workbook.Worksheets[worksheet];
 
+                if(sheet.Dimension == null)
+                    return Enumerable.Empty<IEnumerable<string>>();
+
                 return Enumerable.Range(1, sheet.Dimension.End.Row)
                     .Select(i => Enumerable.Range(1, columns).Select(j => sheet.Cells[i, j]))
                     .Select(r => r.Select(c => c.Text ?? string.Empty).ToList())
