@@ -11,15 +11,22 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <Target Name="GetMyPackageFiles">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)\**\*.*"></BuildOutputInPackage>
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);CustomContentTarget</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <Target Name="CustomContentTarget">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="build/Itamaram.Csv.SpecFlowPlugin.props">
-        <PackagePath>build</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="build/Itamaram.Csv.SpecFlowPlugin.targets">
+      <TfmSpecificPackageFile Include="build/*.*">
         <PackagePath>build</PackagePath>
       </TfmSpecificPackageFile>
     </ItemGroup>
